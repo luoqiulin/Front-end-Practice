@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>carouselFigure</title>
+    <style>
+        .lunbo {
+            width: 400px;
+            height: 400px;
+            background: url(../Source/Amiya.png) no-repeat;
+            background-size: cover;
+            margin: 50px auto;
+            position: relative;
+            border-radius: 20px;
+        }
+        .dian {
+            background-color: rgb(144, 149, 143);
+            width: 12px;
+            height: 12px;
+            border-radius: 6px;
+            position: absolute;
+            top: 370px;
+        }
+        #dian1 {
+            left: 20px;
+        }
+        #dian2 {
+            left: 40px;
+        }
+        #dian3 {
+            left: 60px;
+        }
+        .dian:hover{
+            background-color: azure;
+        }
+        .link {
+            display: block;
+            width: 400px;
+            height: 400px;
+        }
+    </style>
+</head>
+<body>
+    <div class="lunbo">
+        <a href="javascrip:;" id='tupian1' class="link"></a>
+        <div id = dian1 class="dian"></div>
+        <div id = dian2 class="dian"></div>
+        <div id = dian3 class="dian"></div>
+    </div>
+    <script>
+        var dian1 = document.querySelector("#dian1");
+        var dian2 = document.querySelector("#dian2");
+        var dian3 = document.querySelector("#dian3");
+        var lunbo = document.querySelector(".lunbo");
+        var link = document.querySelector('.link');
+        var setIntervalFun = null;
+        var lunbo_flag = 1;
+
+        dian1.onmouseover = function() {
+            lunbo.style.background = 'url(../Source/Texas.png) no-repeat';
+            lunbo.style.backgroundSize = 'cover';
+            link.href = 'https://www.google.com.hk/';
+        }
+        dian2.onmouseover = function() {
+            lunbo.style.background = 'url(../Source/Spector.png) no-repeat';
+            lunbo.style.backgroundSize = 'cover';
+            link.href = 'https://www.google.com.hk/';
+        }
+        dian3.onmouseover = function() {
+            lunbo.style.background = 'url(../Source/Amiya.png) no-repeat';
+            lunbo.style.backgroundSize = 'cover';  
+            link.href = 'https://www.google.com.hk/';
+        }
+        function zidong() {
+            if(lunbo_flag == 1){
+                lunbo.style.background = 'url(../Source/Texas.png) no-repeat';
+                lunbo.style.backgroundSize = 'cover';
+                link.href = 'https://www.google.com.hk/';
+                lunbo_flag = 2;
+            }
+            else if(lunbo_flag == 2){
+                lunbo.style.background = 'url(../Source/Amiya.png) no-repeat';
+                lunbo.style.backgroundSize = 'cover';
+                link.href = 'https://www.google.com.hk/'; 
+                lunbo_flag = 3; 
+            }
+            else {
+                lunbo.style.background = 'url(../Source/Spector.png) no-repeat';
+                lunbo.style.backgroundSize = 'cover';
+                link.href = 'https://www.google.com.hk/'; 
+                lunbo_flag = 1;
+            }
+            
+        }
+        setInterval("zidong()",3000);
+    </script>
+</body>
+</html>

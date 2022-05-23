@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>trackingNumber</title>
+    <style>
+        .searching {
+            margin: 50px auto;
+            width: 200px;
+            height: 200px;
+            border-radius: 20px;
+            background: url(../Source/Amiya.png) no-repeat;
+            background-size: 125%;
+            background-position: -20px -50px;
+            position: relative;
+        }
+        .typing {
+            display: block;
+            width: 160px;
+            height: 20px;
+            border-radius: 10px;
+            border: 1px 1px 1px 1px;
+            border-color:burlywood;
+            position: absolute;
+            top: 90px;
+            left: 15px;
+        }
+        .magnifier {
+            border-radius: 10px;
+            position: absolute;
+            top: 20px;
+            left: 15px;
+            background-color: aliceblue;
+            display: none;
+            font-size: 20px;
+            font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            width: 170px;
+            height: 50px;
+            line-height: 50px;
+            overflow: scroll;
+            overflow-x: hidden;
+            overflow-y: hidden;
+        }
+    </style>
+</head>
+<body>
+    <div class="searching">
+        <div class="magnifier"></div>
+        <input type="text" class="typing"> 
+    </div>
+    <script>
+        var iput = document.querySelector('.typing');
+        var magf = document.querySelector('.magnifier');
+        document.addEventListener('keyup', function (e) {
+            //console.log(e);
+            //Typing S to focus.
+            if (e.keyCode === 83){
+                iput.focus();
+            }
+        })
+        iput.addEventListener('keyup', function (e) {
+            //console.log(e);
+            if (iput.value === ''){
+                magf.style.display = 'none';
+            }
+            else {
+                magf.style.display = 'flex';
+            }
+            //console.log(iput.value);
+            magf.innerHTML = '<strong>' + iput.value + '</strong>';
+        })
+    </script>
+</body>
+</html>
