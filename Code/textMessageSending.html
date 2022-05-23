@@ -5,8 +5,83 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        .yanzhengma {
+            width: 500px;
+            height: 400px;
+            background: url(../Source/neng.png) no-repeat;
+            background-size: cover;
+            background-position: -210px 0px;
+            border-radius: 30px;
+            position: relative;
+            margin: 50px auto;
+        }
+        .kuang {
+            display: block;
+            position: absolute;
+            width: 255px;
+            height: 40px;
+            border-radius: 45px;
+            top: 40px;
+            left: 115px;
+            border-style: none;
+            font-size: 30px;
+            color:darkgray;
+            padding-left: 15px;
+        }
+        input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+        }
+        .kuang:focus {
+            outline: none;
+        }
+        .fasong {
+            width: 100px;
+            height: 100px;
+            display: block;
+            position: absolute;
+            bottom: 20px;
+            left: 205px;
+            border-radius: 50px;
+            border-style: none;
+            font-size: 20px;
+            font-family:'Times New Roman', Times, serif;
+        }
+    
+    </style>
 </head>
 <body>
-    
+    <div class="yanzhengma">
+        <div class="submit"></div>
+        <input class="kuang" type="number" oninput="if(value.length > 6)value=value.slice(0,6)">
+        <button class="fasong">
+            点击发送</button>
+    </div>
+    <script>
+        var fasong = document.querySelector(".fasong");
+        var initial = 10;
+        var timer, timer2 = null;
+        var kuang = document.querySelector('.kuang');
+        function daojishi() {
+            fasong.innerHTML = initial;
+            initial--;
+            if(initial == -2){
+                fasong.innerHTML = '重新发送';
+                clearInterval(timer);
+                initial = 10;
+                fasong.disabled = false;
+                timer2 = setTimeout(function () {
+                    fasong.innerHTML = '点击发送'
+                }, 5000);
+            }
+        }
+        fasong.addEventListener('click', function (){
+            clearTimeout(timer2);
+            fasong.disabled = true;
+            daojishi();
+            timer = setInterval(daojishi, 1000);
+            }
+        );
+    </script>
 </body>
 </html>
