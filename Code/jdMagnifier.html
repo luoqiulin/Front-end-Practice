@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JD.com</title>
+    <style>
+        .small {
+            display: inline-flex;
+            width: 200px;
+            height: auto;
+            position: fixed;
+            top: 30%;
+            left: 20%;
+        }
+        .big {
+            display: none;
+            background: url(../Source/smallHorse.png) no-repeat;
+            width: 400px;
+            height: 400px;
+            position: fixed;
+            top: 20%;
+            left: 55%;
+            border-color: black;
+            border-style: solid;
+            border-width: 1px;
+        }
+        .small img {
+            width: 100%;
+            height: 100%;
+            border: 1px;
+            border-color: black;
+            border-style: solid;
+        }
+
+        .mask {
+            display: none;
+            position: absolute;
+            top: 10px;
+            left: 50px;
+            width: 100px;
+            height: 100px;
+            background-color: yellow;
+            opacity: 0.3;
+        }
+        .note {
+            position: absolute;
+            top: 200px;
+            left: 235px;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="note">Press and hold your mouse on this photo.</nav>
+    <div class="small">
+        <img id="s" src="../Source/smallHorse.png">
+        <div class="mask"></div>
+    </div>
+    <div class="big"></div>
+    <script>
+        //alert("press and hold on this photo!");
+        var body = document.querySelector("body");
+        var small = document.querySelector(".small");
+        var big = document.querySelector(".big");
+        var mask = document.querySelector(".mask");
+        small.addEventListener("mousedown", function (e) {
+            mask.style.display = 'block';
+            big.style.display = 'inline-flex';
+            var x = e.pageX - small.offsetLeft;
+            var y = e.pageY - small.offsetTop;
+            var calx, caly;
+            document.addEventListener("mousemove", movement);
+            function movement(e) {   
+                if (e.pageX - small.offsetLeft <= 50) {
+                    mask.style.left = 0 + 'px';   
+                    calx = 0;   
+                }
+                else if (e.pageX - small.offsetLeft  >= small.offsetWidth - 50) {
+                    mask.style.left = small.offsetWidth - 100 + 'px';  
+                    calx = small.offsetWidth - 100;
+                }
+                else {
+                    mask.style.left = e.pageX - small.offsetLeft - 50 + 'px';
+                    calx = e.pageX - small.offsetLeft - 50
+                }
+                if (e.pageY - small.offsetTop <= 50) {
+                    mask.style.top = 0 + 'px';
+                    caly = 0;
+                }
+                else if (e.pageY - small.offsetTop  >= small.offsetHeight - 50) {
+                    mask.style.top = small.offsetHeight - 100 + 'px';
+                    caly = small.offsetHeight - 100;
+                }
+                else {
+                    mask.style.top = e.pageY - small.offsetTop -50 + 'px';
+                    caly = e.pageY - small.offsetTop -50;
+                }
+                big.style.backgroundPositionX = - (855/200) * calx + 'px';
+                big.style.backgroundPositionY = - (855/200) * caly + 'px';
+            }
+        })
+        document.addEventListener("mouseup", function () {
+            mask.style.display = 'none';
+            big.style.display = 'none';
+        })
+        document.onselectstart = function () {
+            return false;
+        }
+        mask.onmouseover = function () {
+            body.style.cursor = "move";
+        }
+        mask.onmouseout = function () {
+            body.style.cursor = "default";
+        }
+    </script>
+</body>
+
+</html>
