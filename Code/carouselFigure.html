@@ -9,7 +9,7 @@
         .lunbo {
             width: 400px;
             height: 400px;
-            background: url(../Source/Amiya.png) no-repeat;
+            background: url(../Source/Texas.png) no-repeat;
             background-size: cover;
             margin: 50px auto;
             position: relative;
@@ -57,21 +57,35 @@
         var link = document.querySelector('.link');
         var setIntervalFun = null;
         var lunbo_flag = 1;
+        var timer = null;
 
+        timer = setInterval("zidong()",3000);
         dian1.onmouseover = function() {
+            clearInterval(timer);
             lunbo.style.background = 'url(../Source/Texas.png) no-repeat';
             lunbo.style.backgroundSize = 'cover';
             link.href = 'https://www.google.com.hk/';
         }
+        dian1.onmouseout = function () {
+            timer = setInterval("zidong()",3000);
+        }
         dian2.onmouseover = function() {
+            clearInterval(timer);
             lunbo.style.background = 'url(../Source/Spector.png) no-repeat';
             lunbo.style.backgroundSize = 'cover';
             link.href = 'https://www.google.com.hk/';
         }
+        dian2.onmouseout = function () {
+            timer = setInterval("zidong()",3000);
+        }
         dian3.onmouseover = function() {
+            clearInterval(timer);
             lunbo.style.background = 'url(../Source/Amiya.png) no-repeat';
             lunbo.style.backgroundSize = 'cover';  
             link.href = 'https://www.google.com.hk/';
+        }
+        dian3.onmouseout = function () {
+            timer = setInterval("zidong()",3000);
         }
         function zidong() {
             if(lunbo_flag == 1){
@@ -92,9 +106,7 @@
                 link.href = 'https://www.google.com.hk/'; 
                 lunbo_flag = 1;
             }
-            
-        }
-        setInterval("zidong()",3000);
+        }  
     </script>
 </body>
 </html>
